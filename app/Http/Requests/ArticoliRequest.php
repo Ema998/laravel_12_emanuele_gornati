@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProdottiRequest extends FormRequest
+class ArticoliRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class ProdottiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|string|max:255',
-            'prezzo' => 'required|numeric|min:0',
-            'descrizione' => 'required|string|max:1000',
+            'titolo' => 'required|string|max:255',
+            'tags' => 'required|string',
+            'body' => 'required|string|max:1000',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
@@ -32,10 +32,9 @@ class ProdottiRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'Il nome del prodotto è obbligatorio.',
-            'prezzo.required' => 'Il prezzo del prodotto è obbligatorio.',
-            'prezzo.numeric' => 'Il prezzo deve essere un numero.',
-            'descrizione.required' => 'La descrizione del prodotto è obbligatoria.',
+            'titolo.required' => 'Il titolo dell articolo è obbligatorio.',
+            'tags.required' => 'è necessario alemno un tag',
+            'body.required' => 'Il contenuto dell articolo è obbligatirio.',
             'img.image' => 'Il file caricato deve essere un\'immagine.',
             'img.mimes' => 'L\'immagine deve essere in uno dei seguenti formati: jpeg, png, jpg, gif.',
             'img.max' => 'L\'immagine non può superare i 2MB.',

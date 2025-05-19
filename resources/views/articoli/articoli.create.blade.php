@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6">
-                <form method="POST" action="{{ route('articoli.create.submit') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('articoli.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="titoloArticolo">Titolo articolo</label>

@@ -1,6 +1,6 @@
 <x-layout>
     <x-header>
-        <h1 class="text-center">{{ $prodotto['nome'] }}</h1>
+        <h1 class="text-center">{{ $articolo['titolo'] }}</h1>
     </x-header>
     <div class="container">
         <div class="row">
