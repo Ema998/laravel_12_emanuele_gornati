@@ -23,9 +23,10 @@ class ArticoliRequest extends FormRequest
     {
         return [
             'titolo' => 'required|string|max:255',
-            'tags' => 'required|string',
             'body' => 'required|string|max:1000',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tags'   => 'required|array|min:1',
+            'tags.*' => 'integer|exists:tags,id'
         ];
     }
 
@@ -33,11 +34,11 @@ class ArticoliRequest extends FormRequest
     {
         return [
             'titolo.required' => 'Il titolo dell articolo è obbligatorio.',
-            'tags.required' => 'è necessario alemno un tag',
             'body.required' => 'Il contenuto dell articolo è obbligatirio.',
             'img.image' => 'Il file caricato deve essere un\'immagine.',
             'img.mimes' => 'L\'immagine deve essere in uno dei seguenti formati: jpeg, png, jpg, gif.',
             'img.max' => 'L\'immagine non può superare i 2MB.',
+            'tags.min' => 'Devi selezionare almeno un tag.',
         ];
     }
 }

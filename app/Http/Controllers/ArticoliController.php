@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articolo;
-use Illuminate\Http\Request;
 use App\Http\Requests\ArticoliRequest;
+use App\Models\Tag;
 
 class ArticoliController
 {
@@ -22,7 +22,8 @@ class ArticoliController
      */
     public function create()
     {
-        return view('articoli.create');
+        $tags = Tag::all();
+        return view('articoli.create', compact('tags'));
     }
 
     /**
@@ -31,7 +32,6 @@ class ArticoliController
     public function store(ArticoliRequest $request)
     {
         $titolo = $request->input('titolo');
-        $tags = $request->input('tags');
         $body = $request->input('body');
         $img = null;
 
@@ -41,10 +41,12 @@ class ArticoliController
 
         $articolo = Articolo::create([
             'titolo' => $titolo,
-            'tags' => $tags,
             'body' => $body,
             'img' => $img,
         ]);
+
+        $articolo->tags()->attach($request->tags);
+
         return redirect()->route('articoli/homepage')->with('success', 'Articolo creato con successo!');
     }
 
@@ -53,6 +55,8 @@ class ArticoliController
      */
     public function show(Articolo $articolo)
     {
+        $tags = Tag::all();
+        $articolo->load('tags');
         return view('articoli.detail', compact('articolo'));
     }
 
@@ -61,6 +65,7 @@ class ArticoliController
      */
     public function edit(Articolo $articolo)
     {
+        $tags = Tag::all();
         return view('articoli.edit', compact('articolo'));
     }
 
@@ -71,18 +76,18 @@ class ArticoliController
     {
         $request->validate([
             'titolo' => 'required|string|max:255',
-            'tags' => 'required|string|max:255',
             'body' => 'required|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $articolo->titolo = $request->titolo;
-        $articolo->tags = $request->tags;
         $articolo->body = $request->body;
 
         if ($request->hasFile('img')) {
             $articolo->img = $request->file('img')->store('images', 'public');
         }
+        $articolo->tags()->sync($request->tags);
+        $articolo->save();
         return redirect()->route('articoli/index')->with('success', 'Articolo aggiornato con successo!');
     }
 
@@ -91,6 +96,7 @@ class ArticoliController
      */
     public function destroy(Articolo $articolo)
     {
+        $articolo->tags()->detach();
         $articolo->delete();
         return redirect()->route('articoli/index')->with('success', 'Articolo eliminato con successo!');
     }

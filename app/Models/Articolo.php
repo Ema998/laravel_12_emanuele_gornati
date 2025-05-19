@@ -3,23 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Articolo extends Model
 {
     protected $fillable = [
         'titolo',
-        'tags',
         'body',
         'img'
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public funciton tags()
+    public function tags()
     {
-        return $this->belongsToMany(tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 }

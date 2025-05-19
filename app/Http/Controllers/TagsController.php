@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use Illuminate\Http\Request;
-use App\Http\Requests\ArticoliRequest;
+use App\Http\Requests\TagsRequest;
 
 class TagsController
 {
@@ -14,12 +13,15 @@ class TagsController
     public function store(TagsRequest $request)
     {
         $nome = $request->input('nome');
-        }    
 
-        $nome = Tag::create([
+        $tag = Tag::create([
             'nome' => $nome,
         ]);
+
+        $tag->save();
+
         return redirect()->route('articoli/homepage')->with('success', 'Articolo creato con successo!');
     }
-
 }
+
+

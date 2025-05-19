@@ -10,7 +10,16 @@
             <div class="col-md-6">
                 <p><strong>Nome:</strong> {{ $articolo['nome'] }}</p>
                 <p><strong>Descrizione:</strong> {{ $articolo['body'] }}</p>
-                <p><strong>Prezzo:</strong> €{{ number_format($articolo['tags'], 2) }}</p>
+                <!--<p><strong>Creato da:</strong> {{ $articolo->user->nome }}</p>-->
+                <div class="my-3 row">
+                    <div class="col-12 col-md-3">
+                        @if ($articolo->tags->isNotEmpty())
+                            @foreach ($articolo->tags as $tag)
+                                <p>{{ $tag->nome }}</p>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">

@@ -14,5 +14,5 @@ Route::get('articoli/articoli.edit/{articolo}', [ArticoliController::class, 'edi
 Route::get('articoli/articoli.detail/{articolo}', [ArticoliController::class, 'show'])->name('articoli.detail');
 
 Route::get('tags/tags.create', [TagsController::class, 'create'])->name('tags.create');
-Route:post('tags/tags/store', [TagsController::class, 'store'])->name('tags.store');
+Route::post('tags/tags/store', [TagsController::class, 'store'])->name('tags.store');
 Route::get('tags/index', [TagsController::class, 'index'])->name('tags.index');
