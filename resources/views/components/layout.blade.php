@@ -18,34 +18,8 @@
                     <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('prodotti') }}">Prodotti</a>
+                    <a class="nav-link" href="{{ route('articoli.create') }}">Inserisci articolo</a>
                 </li>
-                <!-- @guest -->
-                @if (!Auth::user())
-                <li class="nav-item">
-                    <a class="nav-link outline" href="{{ route('register') }}">Registrati</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link outline" href="{{ route('login') }}">Accedi</a>
-                </li>
-                @endif
-                <!-- @endguest -->
-                <!-- @auth -->
-                @if(Auth::user())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('aggiungiProdotto') }}">Aggiungi prodotto</a>
-                </li>
-                <li class="nav-item">
-                    Benvenuto {{ Auth::user()->name }}
-                </li>
-                <li class="nav-item">
-                   <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout').submit();" class="nav-item">Logout </a>
-                    <form action="{{route('logout')}}" method="POST" style="display: none;" id="logout">
-                        @csrf
-                    </form>
-                </li>
-                @endif
-                <!-- @endauth -->
             </ul>
         </div>
     </nav>

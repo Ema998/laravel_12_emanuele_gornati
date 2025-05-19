@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
-use App\Http\Controllers\ProdottiController;
+use App\Http\Controllers\ArticoliController;
 
-Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
-Route::get('/prodotti', [PublicController::class, 'prodotti'])->name('prodotti');
-Route::get('/aggiungiProdotto', [PublicController::class, 'aggiungiProdotto'])->name('aggiungiProdotto');
-Route::post('/aggiungiProdotto/submit', [ProdottiController::class, 'store'])->name('store');
-Route::get('/dettalioProdotto/{prodotto}', [ProdottiController::class, 'show'])->name('dettaglioProdotto');
-Route::get('/modificaProdotto/{prodotto}', [ProdottiController::class, 'edit'])->name('modificaProdotto');
-Route::put('/modificaProdotto/{prodotto}/submit', [ProdottiController::class, 'update'])->name('updateProdotto');
-Route::delete('/prodotti/delete/{prodotto}', [ProdottiController::class, 'destroy'])->name('deleteProdotto');
+Route::get('articoli/index', [PublicController::class, 'homepage'])->name('homepage');
+Route::get('articoli//articoli.create', [PublicController::class, 'articoliCreate'])->name('articoli.create');
+Route::get('articoli/articoli.detail', [PublicController::class, 'articoliDetail'])->name('articoli.detail');
+Route::get('articoli/articoli.edit', [PublicController::class, 'articoliedit'])->name('articoli.edit');
+Route::post('articoli/store', [ArticoliController::class, 'articoliStore'])->name('articoli.store');
+Route::put('articoli/articoli.update', [ArticoliController::class, 'articoliUpdate'])->name('articoli.update');
+Route::delete('articoli/articoli.destroy', [ArticoliController::class, 'articoliDestroy'])->name('articoli.destroy');
+Route::get('articoli/articoli.show', [ArticoliController::class, 'articoliShow'])->name('articoli.show');
