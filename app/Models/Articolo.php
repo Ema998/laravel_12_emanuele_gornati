@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Articolo extends Model
 {
     protected $fillable = [
-        'nome',
+        'titolo',
         'tags',
         'body',
         'img'
