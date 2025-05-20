@@ -17,4 +17,9 @@ class Articolo extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public funciton tags()
+    {
+        return $this->belongsToMany(tag::class);
+    }
 }

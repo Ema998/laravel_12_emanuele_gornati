@@ -9,4 +9,9 @@ class Tag extends Model
     protected $fillable = [
         'nome'
     ];
+
+    public function articoli()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
