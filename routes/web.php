@@ -5,7 +5,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticoliController;
 use App\Http\Controllers\TagsController;
 
-Route::get('articoli/index', [ArticoliController::class, 'index'])->name('homepage');
+Route::get('/', [ArticoliController::class, 'index'])->name('homepage');
 Route::post('articoli/articoli/store', [ArticoliController::class, 'store'])->name('articoli.store');
 Route::put('articoli/articoli.update/{articolo}', [ArticoliController::class, 'update'])->name('articoli.update');
 Route::delete('articoli/articoli.destroy/{articolo}', [ArticoliController::class, 'destroy'])->name('articoli.destroy');
