@@ -8,22 +8,22 @@
         <div class="row justify-content-center align-items-center">
             <x-errors/>
             <div class="col-12 col-md-6">
-                <form method="POST" action="{{ route('articoli.update', compact('articolo')) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('articoli.update', compact('article')) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label for="titoloArticolo">Titolo articolo</label>
-                        <input type="text" name="titoloArticolo" value="{{$articolo->titolo}}" class="form-control" id="titoloArticolo">
+                        <input type="text" name="titoloArticolo" value="{{$article->titolo}}" class="form-control" id="titoloArticolo">
                     </div>
                     <div class="form-group">
                         <label for="bodyArticolo">Contenuto</label>
-                        <textarea class="form-control" name="body" id="bodyArticolo" rows="3">{{ $articolo->body) }}</textarea>
+                        <textarea class="form-control" name="body" id="bodyArticolo" rows="3">{{ $article->body }}</textarea>
                     </div>
                     <div class="my-3">
                         @foreach ($tags as $tag)
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="checkTags" name="tags[]" value="{{$tag->id}}"
-                                    @if ($articolo->tag->contains($tag)) checked 
+                                    @if ($article->tag->contains($tag)) checked 
                                     @endif>
                                 <label class="form-check-label" for="checkTags">{{$tag->nome}}</label>
                             </div>
@@ -37,7 +37,7 @@
                         <select name="tags[]" id="tags" multiple>
                             @foreach($tags as $tag)
                                 <option value="{{ $tag->id }}"
-                                @if({{ $tag->id, old('tags', $articolo->tags->pluck('id')))
+                                @if({{ $tag->id, old('tags', $article->tags->pluck('id')))
                                     selected}}>
                                 @endif
                                 {{ $tag->nome }}
@@ -50,8 +50,8 @@
                     <div class="form-group">
                         <label for="imgArticolo">Inserisci un'immagine</label>
                         <input type="file" name="img" class="form-control" id="imgArticolo">
-                        @if ($articolo->img)
-                            <img src="{{ asset('storage/' . $articolo->img) }}" alt="Immagine articolo" class="img-fluid mt-2">
+                        @if ($article->img)
+                            <img src="{{ asset('storage/' . $article->img) }}" alt="Immagine articolo" class="img-fluid mt-2">
                     </div>
                     <button type="submit" class="btn btn-primary">Inserisci</button>
                 </form>

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-class Articolo extends Model
+class Article extends Model
 {
     protected $fillable = [
         'titolo',

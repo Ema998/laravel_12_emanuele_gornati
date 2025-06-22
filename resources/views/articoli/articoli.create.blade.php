@@ -11,11 +11,11 @@
                     @csrf
                     <div class="form-group">
                         <label for="titoloArticolo">Titolo articolo</label>
-                        <input type="text" name="titolo" value="{{ old('titolo') }}" class="form-control" id="titoloArticolo">
+                        <input type="text" name="titolo" value="{{ old('titoloArticolo') }}" class="form-control" id="titoloArticolo">
                     </div>
                     <div class="form-group">
                         <label for="bodyArticolo">Contenuto</label>
-                        <textarea class="form-control" name="body" id="bodyArticolo" rows="3">{{ old('body') }}</textarea>
+                        <textarea class="form-control" name="body" id="bodyArticolo" rows="3">{{ old('bodyArticolo') }}</textarea>
                     </div>
                     <div class="my-3">
                         @foreach ($tags as $tag)

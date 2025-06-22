@@ -4,10 +4,10 @@
     </x-header>
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
-            @foreach ($articoli as $articolo )
+            @foreach ($articoli as $article )
                 <div class="col-12 col-md-6">
                     <x-articoliCard 
-                        :articolo = "$articolo">             
+                        :article = "$article">             
                     </x-articoliCard>  
                 </div>
             @endforeach

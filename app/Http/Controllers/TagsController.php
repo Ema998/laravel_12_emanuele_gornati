@@ -20,7 +20,7 @@ class TagsController
 
         $tag->save();
 
-        return redirect()->route('articoli/homepage')->with('success', 'Articolo creato con successo!');
+        return redirect()->route('articoli/homepage')->with('message', 'Tag creato con successo!');
     }
 }
 
