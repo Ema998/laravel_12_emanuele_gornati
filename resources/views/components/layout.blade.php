@@ -18,10 +18,10 @@
                     <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('articoli.create') }}">Inserisci articolo</a>
+                    <a class="nav-link" href="{{ route('articoli-create') }}">Inserisci articolo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('tags.create') }}">Crea tag</a>
+                    <a class="nav-link" href="{{ route('tags-create') }}">Crea tag</a>
                 </li>
             </ul>
         </div>

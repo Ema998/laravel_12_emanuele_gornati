@@ -4,13 +4,13 @@
     </x-header>
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
-            @foreach ($articoli as $article )
+            @foreach ($articles as $article )
                 <div class="col-12 col-md-6">
                     <x-articoliCard :article="$article" />
                 </div>
             @endforeach
             <button>
-                <a href="{{ route('articoli.create') }}"class="btn btn-primary">Aggiungi un articolo</a>
+                <a href="{{ route('articoli-create') }}"class="btn btn-primary">Aggiungi un articolo</a>
             </button>
         </div>
     </div>

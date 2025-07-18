@@ -23,7 +23,7 @@ class ArticleController extends Controller
     public function create()
     {
         $tags = Tag::all();
-        return view('articoli.create', compact('tags'));
+        return view('articoli.articoli-create', compact('tags'));
     }
 
     /**
@@ -36,8 +36,8 @@ class ArticleController extends Controller
         $img = null;
 
         if($request->file('img')){
-            $img = $request->file('img')->store('public/img');
-        }    
+            $img = $request->file('img')->store('img', 'public');
+        };
 
         $article = Article::create([
             'titolo' => $titolo,
@@ -57,7 +57,7 @@ class ArticleController extends Controller
     {
         $tags = Tag::all();
         $article->load('tags');
-        return view('articoli.detail', compact('article'));
+        return view('articoli.articoli-detail', compact('article'));
     }
 
     /**
@@ -66,7 +66,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         $tags = Tag::all();
-        return view('articoli.edit', compact('article', 'tags'));
+        return view('articoli.articoli-edit', compact('article', 'tags'));
     }
 
     /**
@@ -84,11 +84,11 @@ class ArticleController extends Controller
         $article->body = $request->body;
 
         if ($request->hasFile('img')) {
-            $article->img = $request->file('img')->store('images', 'public');
+            $article->img = $request->file('img')->store('img', 'public');
         }
         $article->tags()->sync($request->tags);
         $article->save();
-        return redirect()->route('articoli/index')->with('message', 'Articolo aggiornato con successo!');
+        return redirect()->route('homepage')->with('message', 'Articolo aggiornato con successo!');
     }
 
     /**
@@ -98,6 +98,6 @@ class ArticleController extends Controller
     {
         $article->tags()->detach();
         $article->delete();
-        return redirect()->route('articoli/index')->with('success', 'Articolo eliminato con successo!');
+        return redirect()->route('homepage')->with('success', 'Articolo eliminato con successo!');
     }
 }

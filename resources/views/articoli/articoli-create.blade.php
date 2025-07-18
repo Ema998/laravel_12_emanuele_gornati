@@ -24,7 +24,7 @@
                                 <label class="form-check-label" for="checkTags">{{$tag->nome}}</label>
                             </div>
                         @endforeach
-                        <a href="{{ route('tags.create') }}">Crea un tag</a>
+                        <a href="{{ route('tags-create') }}">Crea un tag</a>
                     </div>
 
                     <!-- Tags con select multiple 
@@ -35,7 +35,7 @@
                                 <option value="{{ $tag->id }}">{{ $tag->nome }}</option>
                             @endforeach
                         </select> 
-                        <a href="{{ route('tags.create') }}">Crea un tag</a>
+                        <a href="{{ route('tags-create') }}">Crea un tag</a>
                     </div> -->
 
                     <div class="form-group">

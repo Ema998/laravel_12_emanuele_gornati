@@ -22,30 +22,28 @@
                     <div class="my-3">
                         @foreach ($tags as $tag)
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkTag{{$tag->id}}" name="tags[]" value="{{$tag->id}}">
-                                    @if ($article->tags->contains($tag)) checked 
-                                    @endif
+                                <input type="checkbox" class="form-check-input" id="checkTag{{$tag->id}}" name="tags[]" value="{{$tag->id}}" {{ $article->tags->contains($tag) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="checkTags">{{$tag->nome}}</label>
                             </div>
                         @endforeach
-                        <a href="{{ route('tags.create') }}">Crea un tag</a>
+                        <a href="{{ route('tags-create') }}">Crea un tag</a>
                     </div>
 
-                    <!-- Tags con select multiple 
+                    <!-- {{-- Tags con select multiple 
                     <div class="my-3">
                         <label for="tags">Seleziona i tag:</label>
                         <select name="tags[]" id="tags" multiple>
                             @foreach($tags as $tag)
                                 <option value="{{ $tag->id }}"
-                                @if({{ $tag->id, old('tags', $article->tags->pluck('id')))
-                                    selected}}>
-                                @endif
-                                {{ $tag->nome }}
-                                </option                            
+                                    @if({{ $tag->id, old('tags', $article->tags->pluck('id')))
+                                        selected}}
+                                    @endif
+                                    {{ $tag->nome }}
+                                </option>                            
                             @endforeach
                         </select> 
-                        <a href="{{ route('tags.create') }}">Crea un tag</a>
-                    </div> -->
+                        <a href="{{ route('tags-create') }}">Crea un tag</a>
+                    </div> --}} -->
 
                     <div class="form-group">
                         <label for="imgArticolo">Inserisci un'immagine</label>
