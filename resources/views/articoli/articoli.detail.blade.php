@@ -1,15 +1,15 @@
 <x-layout>
     <x-header>
-        <h1 class="text-center">{{ $article['titolo'] }}</h1>
+        <h1 class="text-center">{{ $article->titolo }}</h1>
     </x-header>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ $article['immagine'] }}" alt="{{ $article['nome'] }}" class="img-fluid">
+                <img src="{{ $article->img }}" alt="{{ $article->titolo }}" class="img-fluid">
             </div>
             <div class="col-md-6">
-                <p><strong>Nome:</strong> {{ $article['nome'] }}</p>
-                <p><strong>Descrizione:</strong> {{ $article['body'] }}</p>
+                <p><strong>Nome:</strong> {{ $article->titolo }}</p>
+                <p><strong>Descrizione:</strong> {{ $article->body }}</p>
                 <!--<p><strong>Creato da:</strong> {{ $article->user->nome }}</p>-->
                 <div class="my-3 row">
                     <div class="col-12 col-md-3">
@@ -29,4 +29,5 @@
                 <button type="submit" class="btn btn-danger">Elimina articolo</button>
             </form>
         </div>
+    </div>
 </x-layout>

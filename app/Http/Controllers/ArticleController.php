@@ -47,7 +47,7 @@ class ArticleController extends Controller
 
         $article->tags()->attach($request->tags);
 
-        return redirect()->route('articoli/homepage')->with('message', 'Articolo creato con successo!');
+        return redirect()->route('homepage')->with('message', 'Articolo creato con successo!');
     }
 
     /**
@@ -66,7 +66,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         $tags = Tag::all();
-        return view('articoli.edit', compact('article'));
+        return view('articoli.edit', compact('article', 'tags'));
     }
 
     /**

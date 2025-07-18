@@ -5,9 +5,9 @@
     <!--<h6 class="card-subtitle mb-2 text-left">Aggiunto da {{ $article->user->nome }}</h6> -->
     <p class="card-text">{{$article->body}}</p>
     @if ($article->tags->isNotEmpty())
-      <div class="my-3 justify-content-around align-items-center">
+      <div class="d-flex my-3 justify-content-around align-items-center">
         @foreach ($article->tags as $tag)
-          <span class="badge badge-prymary">{{ $tag->nome }}</span>
+          <span class="badge badge-primary">{{ $tag->nome }}</span>
         @endforeach
       </div>
     @endif

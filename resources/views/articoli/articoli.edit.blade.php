@@ -13,7 +13,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="titoloArticolo">Titolo articolo</label>
-                        <input type="text" name="titoloArticolo" value="{{$article->titolo}}" class="form-control" id="titoloArticolo">
+                        <input type="text" name="titolo" value="{{$article->titolo}}" class="form-control" id="titoloArticolo">
                     </div>
                     <div class="form-group">
                         <label for="bodyArticolo">Contenuto</label>
@@ -22,9 +22,9 @@
                     <div class="my-3">
                         @foreach ($tags as $tag)
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkTags" name="tags[]" value="{{$tag->id}}"
-                                    @if ($article->tag->contains($tag)) checked 
-                                    @endif>
+                                <input type="checkbox" class="form-check-input" id="checkTag{{$tag->id}}" name="tags[]" value="{{$tag->id}}">
+                                    @if ($article->tags->contains($tag)) checked 
+                                    @endif
                                 <label class="form-check-label" for="checkTags">{{$tag->nome}}</label>
                             </div>
                         @endforeach
@@ -52,6 +52,7 @@
                         <input type="file" name="img" class="form-control" id="imgArticolo">
                         @if ($article->img)
                             <img src="{{ asset('storage/' . $article->img) }}" alt="Immagine articolo" class="img-fluid mt-2">
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-primary">Inserisci</button>
                 </form>
