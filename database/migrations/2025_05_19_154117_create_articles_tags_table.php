@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('articles_tags', function (Blueprint $table) {
             $table->id();
-            $table->foreign('article_id')->references('id')->on('articles');
             $table->unsignedBigInteger('article_id')->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('article_id')->references('id')->on('articles');
             $table->unsignedBigInteger('tag_id')->nullable();
+            $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });
     }

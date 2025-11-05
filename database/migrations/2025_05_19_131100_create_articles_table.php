@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('img')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags');
-            $table->unsignedBigInteger('tag_id')->nullable();
             $table->timestamps();
         });
     }
