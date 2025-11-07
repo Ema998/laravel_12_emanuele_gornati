@@ -29,7 +29,7 @@ class TagsRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'Il titolo dell articolo è obbligatorio.',
+            'nome.required' => 'Il nome del tag è obbligatorio.',
         ];
     }
 }

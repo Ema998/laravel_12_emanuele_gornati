@@ -33,8 +33,8 @@ class ArticlesRequest extends FormRequest
     public function messages()
     {
         return [
-            'titolo.required' => 'Il titolo dell articolo è obbligatorio.',
-            'body.required' => 'Il contenuto dell articolo è obbligatirio.',
+            'titolo.required' => "Il titolo dell'articolo è obbligatorio.",
+            'body.required' => "Il contenuto dell'articolo è obbligatorio.",
             'img.image' => 'Il file caricato deve essere un\'immagine.',
             'img.mimes' => 'L\'immagine deve essere in uno dei seguenti formati: jpeg, png, jpg, gif.',
             'img.max' => 'L\'immagine non può superare i 2MB.',

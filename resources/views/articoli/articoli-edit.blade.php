@@ -1,59 +1,60 @@
 <x-layout>
     <x-header>
-        <h1 class="text-center">MODIFICA UN ARTICOLO</h1>
+        <h1 class="display-6 fw-semibold mb-3">Modifica l'articolo</h1>
+        <p class="lead">Aggiorna contenuti, immagini e tag per mantenere il tuo articolo sempre attuale.</p>
     </x-header>
-    <x-message/>
-    <x-errors/>
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center">
-            <x-errors/>
-            <div class="col-12 col-md-6">
-                <form method="POST" action="{{ route('articoli.update', compact('article')) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <label for="titoloArticolo">Titolo articolo</label>
-                        <input type="text" name="titolo" value="{{$article->titolo}}" class="form-control" id="titoloArticolo">
-                    </div>
-                    <div class="form-group">
-                        <label for="bodyArticolo">Contenuto</label>
-                        <textarea class="form-control" name="body" id="bodyArticolo" rows="3">{{ $article->body }}</textarea>
-                    </div>
-                    <div class="my-3">
-                        @foreach ($tags as $tag)
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkTag{{$tag->id}}" name="tags[]" value="{{$tag->id}}" {{ $article->tags->contains($tag) ? 'checked' : ''}}>
-                                <label class="form-check-label" for="checkTags">{{$tag->nome}}</label>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <x-message/>
+                <x-errors/>
+                <div class="form-card mt-4">
+                    <form method="POST" action="{{ route('articoli.update', $article) }}" enctype="multipart/form-data" class="row g-4">
+                        @csrf
+                        @method('PUT')
+                        <div class="col-12">
+                            <label for="titoloArticolo" class="form-label">Titolo articolo</label>
+                            <input type="text" name="titolo" value="{{ old('titolo', $article->titolo) }}" class="form-control form-control-lg" id="titoloArticolo" placeholder="Inserisci il titolo">
+                        </div>
+                        <div class="col-12">
+                            <label for="bodyArticolo" class="form-label">Contenuto</label>
+                            <textarea class="form-control" name="body" id="bodyArticolo" rows="6" placeholder="Aggiorna il contenuto">{{ old('body', $article->body) }}</textarea>
+                        </div>
+                        <div class="col-12">
+                            <span class="form-label d-block mb-2">Tag associati</span>
+                            <div class="row g-2">
+                                @foreach ($tags as $tag)
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input
+                                                type="checkbox"
+                                                class="form-check-input"
+                                                id="tag{{ $tag->id }}"
+                                                name="tags[]"
+                                                value="{{ $tag->id }}"
+                                                {{ in_array($tag->id, old('tags', $article->tags->pluck('id')->all())) ? 'checked' : '' }}
+                                            >
+                                            <label class="form-check-label" for="tag{{ $tag->id }}">{{$tag->nome}}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                        <a href="{{ route('tags-create') }}">Crea un tag</a>
-                    </div>
-
-                    <!-- {{-- Tags con select multiple 
-                    <div class="my-3">
-                        <label for="tags">Seleziona i tag:</label>
-                        <select name="tags[]" id="tags" multiple>
-                            @foreach($tags as $tag)
-                                <option value="{{ $tag->id }}"
-                                    @if({{ $tag->id, old('tags', $article->tags->pluck('id')))
-                                        selected}}
-                                    @endif
-                                    {{ $tag->nome }}
-                                </option>                            
-                            @endforeach
-                        </select> 
-                        <a href="{{ route('tags-create') }}">Crea un tag</a>
-                    </div> --}} -->
-
-                    <div class="form-group">
-                        <label for="imgArticolo">Inserisci un'immagine</label>
-                        <input type="file" name="img" class="form-control" id="imgArticolo">
-                        @if ($article->img)
-                            <img src="{{ asset('storage/' . $article->img) }}" alt="Immagine articolo" class="img-fluid mt-2">
-                        @endif
-                    </div>
-                    <button type="submit" class="btn btn-primary">Inserisci</button>
-                </form>
+                            <div class="mt-2">
+                                <a href="{{ route('tags.create') }}" class="link-primary text-decoration-none">Crea un nuovo tag</a>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="imgArticolo" class="form-label">Immagine di copertina</label>
+                            <input type="file" name="img" class="form-control" id="imgArticolo">
+                            @if ($article->img)
+                                <img src="{{ asset('storage/' . $article->img) }}" alt="Immagine articolo" class="img-fluid rounded mt-3">
+                            @endif
+                        </div>
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary px-4">Aggiorna</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

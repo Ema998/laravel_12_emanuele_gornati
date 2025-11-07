@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('titolo');
             $table->text('body');
             $table->string('img')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
             $table->timestamps();
         });
     }

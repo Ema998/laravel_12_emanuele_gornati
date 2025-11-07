@@ -13,7 +13,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::with('tags')->latest()->get();
+
         return view('homepage', compact('articles'));
     }
 
@@ -31,21 +32,18 @@ class ArticleController extends Controller
      */
     public function store(ArticlesRequest $request)
     {
-        $titolo = $request->input('titolo');
-        $body = $request->input('body');
-        $img = null;
+        $data = $request->validated();
 
-        if($request->file('img')){
-            $img = $request->file('img')->store('img', 'public');
-        };
+        $data['img'] = $request->hasFile('img')
+            ? $request->file('img')->store('img', 'public')
+            : null;
 
-        $article = Article::create([
-            'titolo' => $titolo,
-            'body' => $body,
-            'img' => $img,
-        ]);
+        $tags = $data['tags'];
+        unset($data['tags']);
 
-        $article->tags()->attach($request->tags);
+        $article = Article::create($data);
+
+        $article->tags()->sync($tags);
 
         return redirect()->route('homepage')->with('message', 'Articolo creato con successo!');
     }
@@ -55,8 +53,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $tags = Tag::all();
         $article->load('tags');
+
         return view('articoli.articoli-detail', compact('article'));
     }
 
@@ -74,20 +72,20 @@ class ArticleController extends Controller
      */
     public function update(ArticlesRequest $request, Article $article)
     {
-        $request->validate([
-            'titolo' => 'required|string|max:255',
-            'body' => 'required|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $article->titolo = $request->titolo;
-        $article->body = $request->body;
+        $data = $request->validated();
 
         if ($request->hasFile('img')) {
-            $article->img = $request->file('img')->store('img', 'public');
+            $data['img'] = $request->file('img')->store('img', 'public');
+        } else {
+            unset($data['img']);
         }
-        $article->tags()->sync($request->tags);
-        $article->save();
+
+        $tags = $data['tags'];
+        unset($data['tags']);
+
+        $article->update($data);
+        $article->tags()->sync($tags);
+
         return redirect()->route('homepage')->with('message', 'Articolo aggiornato con successo!');
     }
 
@@ -98,6 +96,6 @@ class ArticleController extends Controller
     {
         $article->tags()->detach();
         $article->delete();
-        return redirect()->route('homepage')->with('success', 'Articolo eliminato con successo!');
+        return redirect()->route('homepage')->with('message', 'Articolo eliminato con successo!');
     }
 }
