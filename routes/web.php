@@ -19,4 +19,5 @@ Route::prefix('tags')->name('tags.')->group(function () {
     Route::get('/', [TagsController::class, 'index'])->name('index');
     Route::get('create', [TagsController::class, 'create'])->name('create');
     Route::post('/', [TagsController::class, 'store'])->name('store');
+    Route::get('detail/{tag}', [TagsController::class, 'detail'])->name('detail');
 });

@@ -33,6 +33,13 @@ class TagsController extends Controller
     {
         return view('tags.tags-create');
     }
+
+    public function detail(Tag $tag)
+    {
+        $articles = $tag->articoli()->orderBy('created_at', 'desc')->get();
+
+        return view('tags/tags-detail', compact('tag', 'articles'));
+    }
 }
 
 

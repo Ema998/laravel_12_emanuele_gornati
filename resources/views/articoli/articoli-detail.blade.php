@@ -10,11 +10,9 @@
             <div class="col-lg-6">
                 <div class="card shadow-sm border-0">
                     @if ($article->img)
-                        <img src="{{ asset('storage/' . $article->img) }}" alt="{{ $article->titolo }}" class="card-img-top object-fit-cover" style="max-height: 360px;">
+                        <img src="{{ Storage::url ($article->img) }}" alt="{{ $article->titolo }}" class="card-img-top object-fit-cover" style="max-height: 360px;">
                     @else
-                        <div class="ratio ratio-4x3 bg-light d-flex align-items-center justify-content-center">
-                            <i class="bi bi-image text-secondary fs-1"></i>
-                        </div>
+                        <img class="card-img-top" src="https://picsum.photos/800/600" alt="Copertina di {{ $article->titolo }}" style="height: 300px; object-fit: cover; width: 100%;">
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $article->titolo }}</h5>

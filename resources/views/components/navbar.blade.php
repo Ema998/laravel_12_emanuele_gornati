@@ -12,10 +12,10 @@
                         <a class="nav-link {{ request()->routeIs('homepage') ? 'active' : '' }}" href="{{ route('homepage') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('articoli.create') ? 'active' : '' }}" href="{{ route('articoli.create') }}">Nuovo articolo</a>
+                        <a class="nav-link {{ request()->routeIs('tags.index') ? 'active' : '' }}" href="{{ route('tags.index') }}">Elenco tag</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('tags.index') ? 'active' : '' }}" href="{{ route('tags.index') }}">Elenco tag</a>
+                        <a class="nav-link {{ request()->routeIs('articoli.create') ? 'active' : '' }}" href="{{ route('articoli.create') }}">Nuovo articolo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tags.create') ? 'active' : '' }}" href="{{ route('tags.create') }}">Crea tag</a>

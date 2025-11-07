@@ -22,6 +22,9 @@
                         <div class="col-12">
                             <span class="form-label d-block mb-2">Tag disponibili</span>
                             <div class="row g-2">
+                                @if ($tags->isEmpty())
+                                    <p class="text-muted">Nessun tag disponibile.</p>
+                                @else
                                 @foreach ($tags as $tag)
                                     <div class="col-sm-6">
                                         <div class="form-check">
@@ -37,9 +40,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </div>
-                            <div class="mt-2">
-                                <a href="{{ route('tags.create') }}" class="link-primary text-decoration-none">Crea un nuovo tag</a>
+                                @endif
                             </div>
                         </div>
                         <div class="col-12">

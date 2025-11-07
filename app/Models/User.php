@@ -46,8 +46,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function games()
+    public function articles()
     {
-        return $this->hasMany(Articolo::class);
+        return $this->hasMany(Article::class);
     }
 }

@@ -47,7 +47,7 @@
                             <label for="imgArticolo" class="form-label">Immagine di copertina</label>
                             <input type="file" name="img" class="form-control" id="imgArticolo">
                             @if ($article->img)
-                                <img src="{{ asset('storage/' . $article->img) }}" alt="Immagine articolo" class="img-fluid rounded mt-3">
+                                <img src="{{ Storage::url ($article->img) }}" alt="Immagine articolo" class="img-fluid rounded mt-3">
                             @endif
                         </div>
                         <div class="col-12 d-flex justify-content-end">
